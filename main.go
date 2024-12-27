@@ -8,31 +8,26 @@ import (
 )
 
 func main() {
-	// Configurações do Mailtrap
 	host := "sandbox.smtp.mailtrap.io"
 	port := 587
 	username := os.Getenv("USERNAME")
 	password := os.Getenv("PASSWORD")
 
-	// Verificando as variáveis de ambiente
 	if username == "" || password == "" {
-		log.Fatal("As variáveis de ambiente USERNAME ou PASSWORD não estão definidas corretamente.")
+		log.Fatal("The USERNAME or PASSWORD environment variables are not set correctly.")
 	}
 
-	fromEmail := "from@example.com" // Certifique-se de que este é um e-mail válido
-	toEmail := "to@example.com"     // E-mail de destino
+	fromEmail := "from@example.com"
+	toEmail := "to@example.com"
 
-	// Logs de depuração
 	log.Printf("SMTP Host: %s, Port: %d, Username: %s, From: %s, To: %s", host, port, username, fromEmail, toEmail)
 
-	// Criando a mensagem de e-mail
 	m := gomail.NewMessage()
 	m.SetHeader("From", fromEmail)
 	m.SetHeader("To", toEmail)
 	m.SetHeader("Subject", "You are awesome!")
 	m.SetBody("text/plain", "Congrats for sending test email with Mailtrap!")
 
-	// Corpo alternativo em HTML
 	m.AddAlternative("text/html", `
 		<!doctype html>
 		<html>
@@ -47,14 +42,12 @@ func main() {
 		</html>
 	`)
 
-	// Criando o dialer SMTP
 	d := gomail.NewDialer(host, port, username, password)
 
-	// Tentando enviar o e-mail
-	log.Println("Tentando enviar o e-mail...")
+	log.Println("Trying to send the email...")
 	if err := d.DialAndSend(m); err != nil {
-		log.Fatalf("Erro ao enviar e-mail: %v", err)
+		log.Fatalf("Error sending email: %v", err)
 	}
 
-	log.Println("E-mail enviado com sucesso!")
+	log.Println("Email sent successfully!")
 }
