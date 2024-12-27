@@ -1,6 +1,7 @@
 package main
 
 import (
+	"email-automatizado/emailtemplate"
 	"log"
 	"os"
 
@@ -28,19 +29,7 @@ func main() {
 	m.SetHeader("Subject", "You are awesome!")
 	m.SetBody("text/plain", "Congrats for sending test email with Mailtrap!")
 
-	m.AddAlternative("text/html", `
-		<!doctype html>
-		<html>
-		  <head>
-		    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		  </head>
-		  <body style="font-family: sans-serif;">
-		    <h1>Congrats for sending test email with Mailtrap!</h1>
-		    <p>If you are viewing this email in your inbox – the integration works.</p>
-		    <p>Good luck! Hope it works.</p>
-		  </body>
-		</html>
-	`)
+	m.AddAlternative("text/html", emailtemplate.GetHTMLBody())
 
 	d := gomail.NewDialer(host, port, username, password)
 

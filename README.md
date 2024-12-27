@@ -36,6 +36,13 @@ Before running the project, make sure the following are installed:
     go get gopkg.in/gomail.v2
     ```
 
+3. Adjust variables as needed:
+
+- host := "The Mailtrap host"
+- port := "The Mailtrap port (587 is the most usable)"
+- username := "The Mailtrap username"
+- password := "The password generated in Mailtra"
+
 ## 🚀 Environment Variables <a name="environment-variables"></a>
 
 The code uses the `USERNAME` and `PASSWORD` environment variables to configure SMTP authentication with Mailtrap. These variables should be defined in the terminal or in a `.env` file at the root of the project.
@@ -56,6 +63,7 @@ The Go code uses the gomail library to send an email in both text and HTML forma
 ### 📁 Code Structure <a name="code-structure"></a>
 
 - main.go: The main file that contains the code to send the email.
+- emailtemplate/template.go: The html template for the email.
 - .env: (optional) File to store the USERNAME and PASSWORD environment variables.
 
 ## ✅ Execution <a name="execution"></a>
