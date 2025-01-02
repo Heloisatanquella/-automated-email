@@ -26,13 +26,12 @@ func main() {
 	m := gomail.NewMessage()
 	m.SetHeader("From", fromEmail)
 	m.SetHeader("To", toEmail)
-	m.SetHeader("Subject", "You are awesome!")
-	m.SetBody("text/plain", "Congrats for sending test email with Mailtrap!")
+	m.SetHeader("Subject", "Boas vindas ao To Do List")
 
 	data := emailtemplate.EmailData{
 		Title:      "Seja bem-vindo ao To Do List!",
 		Message:    "Esperamos que você goste da experiência com nosso gerenciador de tarefas queridinho.",
-		ImageURL:   "https://assets-examples.mailtrap.io/integration-examples/welcome.png",
+		ImageURL:   "email-automatizado/assets/image.svg",
 		FooterNote: "Garanto que não viverá mais sem ele rs!",
 	}
 
