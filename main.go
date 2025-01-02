@@ -1,7 +1,7 @@
 package main
 
 import (
-	"email-automatizado/emailtemplate"
+	emailtemplate "email-automatizado/emailTemplate"
 	"log"
 	"os"
 
@@ -29,7 +29,14 @@ func main() {
 	m.SetHeader("Subject", "You are awesome!")
 	m.SetBody("text/plain", "Congrats for sending test email with Mailtrap!")
 
-	m.AddAlternative("text/html", emailtemplate.GetHTMLBody())
+	data := emailtemplate.EmailData{
+		Title:      "Seja bem-vindo ao To Do List!",
+		Message:    "Esperamos que você goste da experiência com nosso gerenciador de tarefas queridinho.",
+		ImageURL:   "https://assets-examples.mailtrap.io/integration-examples/welcome.png",
+		FooterNote: "Garanto que não viverá mais sem ele rs!",
+	}
+
+	m.AddAlternative("text/html", emailtemplate.GetHTMLBody(data))
 
 	d := gomail.NewDialer(host, port, username, password)
 
